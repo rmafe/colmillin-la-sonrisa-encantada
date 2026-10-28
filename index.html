@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Colmillín | La sonrisa encantada</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@2/lib/p5.min.js"></script>
+  </head>
+  <body>
+    <main class="juego">
+      <header class="juego__cabecera">
+        <div>
+          <h1 class="juego__titulo">🐾 Colmillín</h1>
+          <p class="juego__subtitulo">La sonrisa encantada</p>
+        </div>
+        <div class="juego__marcador">
+          <span>Tiempo de hechizo</span
+          ><strong id="contador">0,0 / 10 s</strong>
+        </div>
+      </header>
+      <section
+        class="juego__escenario"
+        aria-label="Cámara y filtro de perro vampiro"
+      >
+        <div id="contenedor-canvas" class="juego__canvas"></div>
+        <div id="pantalla-inicio" class="juego__pantalla">
+          <div class="juego__emblema">🎃🐶</div>
+          <h2>¡Ayuda a Colmillín!</h2>
+          <p>
+            Abre la boca para activar la magia y limpiar los colmillos del perro
+            vampiro.
+          </p>
+          <ol class="juego__pasos">
+            <li>Mira a la cámara</li>
+            <li>Abre la boca</li>
+            <li>Acumula 10 segundos de magia</li>
+          </ol>
+          <button
+            id="boton-inicio"
+            class="juego__boton juego__boton--principal"
+          >
+            ¡Empezar!
+          </button>
+        </div>
+        <div
+          id="pantalla-carga"
+          class="juego__pantalla juego__pantalla--oculta"
+          role="status"
+        >
+          <div class="juego__cargador" aria-hidden="true"></div>
+          <h2>Preparando el hechizo...</h2>
+          <p id="mensaje-carga">Cargando el detector facial</p>
+        </div>
+        <div
+          id="pantalla-final"
+          class="juego__pantalla juego__pantalla--final juego__pantalla--oculta"
+        >
+          <div class="juego__emblema">✨🐶✨</div>
+          <h2>¡Sonrisa encantada!</h2>
+          <span class="juego__insignia">10 / 10 SEGUNDOS DE MAGIA</span>
+          <p>
+            ¡Has limpiado los colmillos de Colmillín!<br />Tu sonrisa ya está
+            lista para Halloween.
+          </p>
+          <button
+            id="boton-repetir"
+            class="juego__boton juego__boton--principal"
+          >
+            Jugar otra vez
+          </button>
+        </div>
+        <div
+          id="mensaje-juego"
+          class="juego__mensaje juego__mensaje--oculto"
+          aria-live="polite"
+        >
+          Busca tu cara en la cámara
+        </div>
+      </section>
+      <div
+        class="juego__progreso"
+        role="progressbar"
+        aria-label="Progreso de la limpieza mágica"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+        id="barra-progreso"
+      >
+        <div class="juego__progreso-relleno" id="relleno-progreso"></div>
+      </div>
+      <section class="juego__controles">
+        <label class="juego__sensibilidad" for="sensibilidad"
+          >Sensibilidad de apertura
+          <input
+            id="sensibilidad"
+            type="range"
+            min="0.10"
+            max="0.35"
+            step="0.01"
+            value="0.18"
+          /><output id="valor-sensibilidad">0,18</output></label
+        >
+        <label class="juego__sonido"
+          ><input id="activar-sonido" type="checkbox" checked /> Sonido</label
+        >
+        <button id="boton-reiniciar" class="juego__boton" disabled>
+          Reiniciar
+        </button>
+        <button
+          id="boton-detener"
+          class="juego__boton juego__boton--secundario"
+          disabled
+        >
+          Detener cámara
+        </button>
+        <button
+          id="boton-salir"
+          class="juego__boton juego__boton--secundario"
+          type="button"
+          hidden
+        >
+          Salir
+        </button>
+      </section>
+      <p id="estado" class="juego__estado" role="status">
+        Pulsa ¡Empezar! para activar la cámara.
+      </p>
+      <footer class="juego__pie">
+        Tu cámara no se graba. Puedes apagarla cuando quieras.
+      </footer>
+    </main>
+    <script type="module" src="sketch.js"></script>
+  </body>
+</html>
